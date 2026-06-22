@@ -2,6 +2,13 @@ import { NextRequest } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 
 export async function PUT(request: NextRequest) {
+  if (process.env.ACCEPTING_APPS == '0') {
+    return Response.json(
+      { ok: false, error: 'Missing required fields' },
+      { status: 400 },
+    )
+  }
+
   const form = await request.formData()
 
   // Plain text/select fields — pull by the `name` you set on each input.
