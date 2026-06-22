@@ -5,14 +5,19 @@ import { usePathname } from 'next/navigation'
 
 import './common.css'
 
-export function NavButton({ text, link }) {
+type NavButtonProps = {
+  text: string
+  link: string
+}
+
+export function NavButton(props: NavButtonProps) {
   const pathname = usePathname()
-  const isCurrent = pathname === link
+  const isCurrent = pathname === props.link
 
   return (
-    <Link href={link}>
+    <Link href={props.link}>
       <button className={isCurrent ? 'currentNavButton navButton' : 'navButton'}>
-        {text}
+        {props.text}
       </button>
     </Link>
   )
