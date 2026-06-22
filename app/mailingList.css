@@ -1,0 +1,51 @@
+.mailingList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 480px;
+    margin-inline: auto;
+}
+
+.mailingList input {
+    flex: 1 1 220px;          /* grow to fill, wrap under the button on small screens */
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1px solid #3a3a5c;
+    border-radius: 6px;
+    background-color: #25254a;
+    color: white;
+    font-family: inherit;
+    font-size: 16px;
+}
+
+.mailingList input:focus {
+    outline: none;
+    border-color: #6366f1;
+}
+
+.mailingList input::placeholder {
+    color: #8a8aa6;
+}
+
+/* Status messages reuse the same look as the application form. */
+.statusBox {
+    max-width: 480px;
+    margin: 16px auto 0;
+    padding: 12px 16px;
+    border-radius: 6px;
+    border: 1px solid;
+}
+
+.statusSuccess {
+    background-color: #1e3a2f;
+    border-color: #2f9e6b;
+    color: #b6f0d0;
+}
+
+.statusError {
+    background-color: #3a1e2a;
+    border-color: #c0395b;
+    color: #f0b6c6;
+}
