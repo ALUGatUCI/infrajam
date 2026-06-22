@@ -34,9 +34,10 @@ export default function Home() {
       <NavBar></NavBar>
       <h1>Welcome to InfraJam!</h1>
       <p>
-        InfraJam is a 24-hour infrastructure-focused hackathon at UC Irvine that will be hosted from [TBD]
-        to [TBD] at [TBD]. The event brings together students across universities to build,
-        break, and scale real infrastructure over a single weekend.
+        InfraJam is an in-development infrastructure-focused hackathon
+        that is planned to be hosted at UC Irvine. The event brings
+        together students across universities to build, break,
+        and scale real infrastructure over a single weekend.
       </p>
 
       <p>
