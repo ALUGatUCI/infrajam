@@ -34,14 +34,15 @@ export default function Home() {
       <NavBar></NavBar>
       <h1>Welcome to InfraJam!</h1>
       <p>
-        InfraJam is an in-development infrastructure-focused hackathon
-        that is planned to be hosted at UC Irvine. The event brings
-        together students across universities to build, break,
-        and scale real infrastructure over a single weekend.
+        An in-development <em style={{ color: '#6366f1' }}>infrastructure-focused hackathon</em> that
+        is planned to be hosted at UC Irvine.
       </p>
 
+
       <p>
-        And during that weekend, you will be able to attend workshops and join social events
+        The event brings together students across universities to build, break,
+        and scale real infrastructure over a single weekend. And during that
+        weekend, you will be able to attend workshops and join social events
         with other talented students.
       </p>
 

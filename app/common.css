@@ -17,14 +17,30 @@
     font-size: clamp(14px, 4vw, 18px);
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.15s ease;
+    position: relative;      /* anchor the underline pseudo-element */
 }
 
-.navButton:hover {
-    background-color: #2a2a4a;
+/* Animated underline that sits under the text and grows on hover.
+   Excluded on the current page's button (which already has its own underline). */
+.navButton:not(.currentNavButton)::after {
+    content: '';
+    position: absolute;
+    left: clamp(12px, 4vw, 18px);    /* match the horizontal padding */
+    right: clamp(12px, 4vw, 18px);
+    bottom: 4px;
+    height: 2px;
+    background-color: white;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s ease;
+}
+
+.navButton:not(.currentNavButton):hover::after {
+    transform: scaleX(1);
 }
 
 .currentNavButton {
-    background-color: #6366f1;
-    color: white;
+    color: gray;
+    text-decoration: underline;
+    text-underline-offset: 6px;
 }
