@@ -52,19 +52,19 @@ export default function Home() {
         <TracksButton />
       </div>
 
-      <h1>Be The First To Know!</h1>
+      <h2>Be The First To Know!</h2>
       <p>
         Join our mailing list for updates and to be informed when
         applications open!
       </p>
       <MailingList />
 
-      <h1>Thanks To Our Sponsors</h1>
+      <h2>Thanks To Our Sponsors</h2>
       {/* This is for when we have actual sponsors to showcase */}
       <div className='horizontal sponsors'>
       </div>
 
-      <h1>Brought to you by</h1>
+      <h2>Brought to you by</h2>
       <div className="horizontal">
         <a href="https://alugatuci.org" target="_blank"><Image alt="ALUG@UCI" width="300" height="175" src="/alug-logo.png" /></a>
       </div>
