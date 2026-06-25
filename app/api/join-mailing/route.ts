@@ -1,5 +1,6 @@
 import { NextRequest } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
+import { nanoid } from 'nanoid'
 
 export async function POST(request: NextRequest) {
   try {
@@ -41,7 +42,7 @@ export async function POST(request: NextRequest) {
 
     const { error: addError } = await supabase
       .from('mailing')
-      .insert({ email: trimmedEmail })
+      .insert({ email: trimmedEmail, unsubscribe_key: nanoid() })
 
     if (addError) {
       return Response.json(

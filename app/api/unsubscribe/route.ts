@@ -6,12 +6,14 @@ export async function DELETE(request: NextRequest) {
     const form = await request.formData();
 
     const email = form.get('email');
+    const unsubscribeKey = form.get('unsubscribe_key')
 
     if (!email) {
       return;
     }
 
     const trimmedEmail = String(email).trim()
+    const trimmedUnsubscribeKey = String(unsubscribeKey).trim()
 
     const supabase = createClient(
       process.env.SUPABASE_URL!,
@@ -19,33 +21,41 @@ export async function DELETE(request: NextRequest) {
     )
 
     // Check if email is already in the database
-    const { data: data, error: error } = await supabase
+    const { data, error } = await supabase
       .from('mailing')
-      .select('email')
+      .select('email, unsubscribe_key')
       .eq('email', trimmedEmail)
       .maybeSingle()
 
-    if (data) {
-      const { data: data, error: error } = await supabase
+    if (error) {
+      return Response.json(
+        { ok: false, error: `Email was not found` },
+        { status: 404 }
+      )
+    }
+
+    // Now check that they key is equal
+    if (data?.unsubscribe_key === trimmedUnsubscribeKey) {
+      const { data, error } = await supabase
         .from('mailing')
         .delete()
         .eq('email', trimmedEmail)
 
       if (error) {
         return Response.json(
-          { ok: false, error: 'A database error occurred' },
-          { status: 500 },
+          { ok: false, details: 'Something went wrong unsubscribing you' },
+          { status: 500 }
         )
       }
 
       return Response.json(
-        { ok: true, error: 'Unsubscribed from the mailing list' },
-        { status: 201 },
+        { ok: true, details: 'Successfully unsubscribed' },
+        { status: 200 }
       )
     } else {
       return Response.json(
-        { ok: false, error: 'A database error occurred' },
-        { status: 500 },
+        { ok: false, error: `The unsubscribe token does not match` },
+        { status: 400 }
       )
     }
   } catch (error) {
