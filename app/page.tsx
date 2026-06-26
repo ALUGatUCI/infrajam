@@ -37,7 +37,8 @@ export default function Home() {
       <h2>Thanks To Our Sponsors</h2>
       {/* This is for when we have actual sponsors to showcase */}
       <div className='horizontal sponsors'>
-        
+
+      </div>
       <SiteButton text='Interested in Sponsoring?' link='mailto:contact@alugatuci.org'></SiteButton>
 
       <h2>Brought To You By</h2>
