@@ -8,10 +8,13 @@ export async function PUT(request: NextRequest) {
     const form = await request.formData();
 
     const appId = form.get('app_id');
-    const confirmationCode = form.get('confirmation_key')
+    const confirmationCode = form.get('confirmation_code')
 
     if (!appId) {
-      return;
+      return Response.json(
+        { ok: false, error: 'Missing application id' },
+        { status: 400 },
+      )
     }
 
     const trimmedAppId = String(appId).trim()
@@ -41,12 +44,12 @@ export async function PUT(request: NextRequest) {
 
     // Confirm the application if the code matches
     if (trimmedConfirmationCode == data?.confirmation_code) {
-      const { data, error } = await supabase
+      const { error: updateError } = await supabase
         .from('applications')
         .update({ confirmed: true })
         .eq('id', trimmedAppId)
 
-      if (error) {
+      if (updateError) {
         return Response.json(
           { ok: false, error: `An error occurred confirming your application` },
           { status: 500 }
