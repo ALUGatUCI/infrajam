@@ -35,7 +35,7 @@ class DatabaseService {
       .eq('id', appId)
       .maybeSingle()
 
-    if (error) {
+    if (!data) {
       throw new Error("Application was not found")
     }
 
@@ -64,7 +64,7 @@ class DatabaseService {
       .eq('email', email)
       .maybeSingle()
 
-    if (!error) {
+    if (data) {
       throw new Error("The email is already subscribed")
     }
 
@@ -84,7 +84,7 @@ class DatabaseService {
       .eq('email', email)
       .maybeSingle()
 
-    if (error) {
+    if (!data) {
       throw new Error("The email was not found")
     }
 
