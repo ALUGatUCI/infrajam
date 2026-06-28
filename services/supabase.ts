@@ -64,7 +64,7 @@ class DatabaseService {
       .eq('email', email)
       .maybeSingle()
 
-    if (error) {
+    if (!error) {
       throw new Error("The email is already subscribed")
     }
 
