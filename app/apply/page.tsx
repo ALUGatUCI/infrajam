@@ -186,7 +186,7 @@ function PersonalInformation() {
 
       {status === 'success' && (
         <p className="statusBox statusSuccess">
-          Thank you for applying to InfraJam! We&apos;ve received your application and
+          Thank you for applying to OpsJam! We&apos;ve received your application and
           will get back to you soon.
         </p>
       )}
@@ -220,7 +220,7 @@ export default function Apply() {
         <h1>Application</h1>
 
         <p>
-          We are excited that you're interested in applying for InfraJam! With that said,
+          We are excited that you're interested in applying for OpsJam! With that said,
           please fill out the form below and we will review it and get back to you as soon
           as possible.
         </p>
