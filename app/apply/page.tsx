@@ -3,7 +3,6 @@
 import './style.css'
 import { useEffect, useRef, useState } from 'react'
 import { COUNTRIES } from './countries'
-import { NavBar } from '../../components/NavBar'
 import { MailingList } from '../../components/MailingList'
 
 const STORAGE_KEY = 'infrajam-application'
@@ -186,8 +185,7 @@ function PersonalInformation() {
 
       {status === 'success' && (
         <p className="statusBox statusSuccess">
-          Thank you for applying to InfraJam! We&apos;ve received your application and
-          will get back to you soon.
+          Thank you for applying to OpsJam! Check your email to confirm your application.
         </p>
       )}
       {status === 'error' && (
@@ -203,7 +201,6 @@ export default function Apply() {
   if (process.env.NEXT_PUBLIC_ACCEPTING_APPS == '0') {
     return (
       <>
-        <NavBar></NavBar>
         <h1>Application</h1>
 
         <p>
@@ -217,11 +214,10 @@ export default function Apply() {
   } else {
     return (
       <>
-        <NavBar></NavBar>
         <h1>Application</h1>
 
         <p>
-          We are excited that you're interested in applying for InfraJam! With that said,
+          We are excited that you're interested in applying for OpsJam! With that said,
           please fill out the form below and we will review it and get back to you as soon
           as possible.
         </p>
