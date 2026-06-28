@@ -1,5 +1,7 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
+import { generateRandomCode } from './security'
+
 class DatabaseService {
   private supabase: SupabaseClient
 
@@ -36,6 +38,26 @@ class DatabaseService {
       }
     } else {
       throw new Error("The confirmation code does not match")
+    }
+  }
+
+  public async joinMailingList(email: string): Promise<void> {
+    const { data, error } = await this.supabase
+      .from('mailing')
+      .select('email')
+      .eq('email', email)
+      .maybeSingle()
+
+    if (error) {
+      throw new Error("The email is already subscribed")
+    }
+
+    const { error: subscribeError } = await this.supabase
+      .from('mailing')
+      .insert({ email: email, unsubscribe_key: generateRandomCode() })
+
+    if (subscribeError) {
+      throw new Error("There was a problem subscribing the email to the mailing list")
     }
   }
 }
