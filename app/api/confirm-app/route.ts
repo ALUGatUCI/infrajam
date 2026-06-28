@@ -20,7 +20,7 @@ export async function PUT(request: NextRequest) {
   const trimmedConfirmationCode = String(confirmationCode).trim()
 
   try {
-    databaseService.confirmApplication(trimmedAppId, trimmedConfirmationCode)
+    await databaseService.confirmApplication(trimmedAppId, trimmedConfirmationCode)
   } catch (error) {
     return Response.json(
       { ok: false, error: String(error) },

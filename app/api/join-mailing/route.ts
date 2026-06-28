@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
   const trimmedEmail = String(email).trim()
 
   try {
-    databaseService.joinMailingList(trimmedEmail)
+    await databaseService.joinMailingList(trimmedEmail)
   } catch (error) {
     return Response.json(
       { ok: false, message: String(error) }
