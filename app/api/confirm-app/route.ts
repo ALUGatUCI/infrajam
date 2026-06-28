@@ -19,5 +19,15 @@ export async function PUT(request: NextRequest) {
   const trimmedAppId = String(appId).trim()
   const trimmedConfirmationCode = String(confirmationCode).trim()
 
-  databaseService.confirmApplication(trimmedAppId, trimmedConfirmationCode)
+  try {
+    databaseService.confirmApplication(trimmedAppId, trimmedConfirmationCode)
+  } catch (error) {
+    return Response.json(
+      { ok: false, error: String(error) },
+    )
+  }
+
+  return Response.json(
+    { ok: true, message: "Application has been confirmed" },
+  )
 }
