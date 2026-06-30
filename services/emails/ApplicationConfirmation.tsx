@@ -3,7 +3,7 @@ import EmailLayout from './Layout'
 
 type Props = { appId: number, confirmationCode: string }
 
-export default function MailingListConfirmation({ appId, confirmationCode }: Props) {
+export default function ApplicationConfirmation({ appId, confirmationCode }: Props) {
   return (
     <EmailLayout email={ null } unsubscribeKey={ null }>
       <Heading style={heading}>OpsJam Application Confirmation</Heading>

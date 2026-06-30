@@ -58,7 +58,7 @@ export async function PUT(request: NextRequest) {
   }
 
   try {
-    await databaseService.submitApplication({
+    const appId = await databaseService.submitApplication({
       fullName: String(fullName),
       email: String(email),
       phoneNumber: String(phoneNumber),
@@ -74,7 +74,12 @@ export async function PUT(request: NextRequest) {
       resume: resume,
       confirmationCode: confirmationCode
     })
-    emailService.sendApplicationConfirmation(String(email), confirmationCode)
+    // Fire-and-forget: the application is already saved, so a mail failure
+    // shouldn't fail the request — but we must catch it or the rejection
+    // surfaces as an unhandledRejection and crashes the process.
+    emailService
+      .sendApplicationConfirmation(String(email), appId, confirmationCode)
+      .catch((err) => console.error('Failed to send application confirmation email:', err))
   } catch (error) {
     return Response.json(
       { ok: false, error: String(error) },

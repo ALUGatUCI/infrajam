@@ -33,9 +33,9 @@ class EmailService {
     })
   }
 
-  public async sendApplicationConfirmation(recipient: string, confirmationCode: string) {
+  public async sendApplicationConfirmation(recipient: string, appId: number, confirmationCode: string) {
     const html = await render(
-      createElement(ApplicationConfirmation, { email: recipient, confirmationCode: confirmationCode })
+      createElement(ApplicationConfirmation, { appId: appId, confirmationCode: confirmationCode })
     )
 
     await this.transporter.sendMail({
