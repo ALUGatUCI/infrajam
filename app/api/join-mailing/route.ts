@@ -19,6 +19,7 @@ export async function POST(request: NextRequest) {
 
   try {
     await databaseService.joinMailingList(trimmedEmail, randomCode)
+    await emailService.sendMailingListEmail(trimmedEmail, randomCode)
   } catch (error) {
     return Response.json(
       { ok: false, message: String(error) },
