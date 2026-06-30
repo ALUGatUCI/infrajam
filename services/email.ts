@@ -2,6 +2,7 @@ import nodemailer from 'nodemailer'
 import { render } from '@react-email/render'
 import { createElement } from 'react'
 import MailingListConfirmation from './emails/MailingListConfirmation'
+import ApplicationConfirmation from './emails/ApplicationConfirmation'
 
 class EmailService {
   private transporter: nodemailer.Transporter
