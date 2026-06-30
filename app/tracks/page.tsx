@@ -18,8 +18,8 @@ function Prize({ track, description, prizeName, prizeImage }: prizeParameters) {
 
         <p className='prizeHint'>Hover to reveal prize</p>
         <div className='prizeReveal'>
+          <h3 className='prizeCaption'>{prizeName}</h3>
           {prizeImage}
-          <p className='prizeCaption'>{prizeName}</p>
         </div>
       </div>
     </>
