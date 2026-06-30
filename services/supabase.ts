@@ -1,7 +1,5 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
-import { generateRandomCode } from './security'
-
 type ApplicationSubmission = {
   fullName: string
   email: string
@@ -57,7 +55,7 @@ class DatabaseService {
     }
   }
 
-  public async joinMailingList(email: string): Promise<void> {
+  public async joinMailingList(email: string, randomCode: string): Promise<void> {
     const { data, error } = await this.supabase
       .from('mailing')
       .select('email')
@@ -70,7 +68,7 @@ class DatabaseService {
 
     const { error: subscribeError } = await this.supabase
       .from('mailing')
-      .insert({ email: email, unsubscribe_key: generateRandomCode() })
+      .insert({ email: email, unsubscribe_key: randomCode })
 
     if (subscribeError) {
       throw new Error("There was a problem subscribing the email to the mailing list")
@@ -102,7 +100,7 @@ class DatabaseService {
     }
   }
 
-  public async submitApplication(application: ApplicationSubmission): Promise<void> {
+  public async submitApplication(application: ApplicationSubmission, randomCode: string): Promise<void> {
     // Reject a second application from the same email.
     const { data: existing, error: lookupError } = await this.supabase
       .from('applications')
@@ -145,7 +143,7 @@ class DatabaseService {
       shirt_size: application.shirtSize,
       dietary_restrictions: application.dietaryRestrictions,
       resume_path: resumePath,
-      confirmation_code: generateRandomCode(),
+      confirmation_code: randomCode,
     })
 
     if (insertError) {
