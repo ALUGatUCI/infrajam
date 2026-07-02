@@ -14,9 +14,13 @@ function TeamMember({ name, role, imageSrc, linkedin }: teamMemberParams) {
   return (
     <div className='teamMember'>
       <Image className='teamPhoto' alt={name} width='300' height='225' src={imageSrc}></Image>
-      <h2>{name}</h2>
-      <h3>{role}</h3>
-      {linkedin && <a className='teamLinkedin' target="_blank" href={linkedin}><Image alt='LinkedIn' width='20' height='20' src='/logos/linkedin.svg'></Image></a>}
+      <div className='teamInfo'>
+        <div className='teamText'>
+          <h2>{name}</h2>
+          <h3>{role}</h3>
+        </div>
+        {linkedin && <a className='teamLinkedin' target="_blank" href={linkedin}><Image alt='LinkedIn' width='20' height='20' src='/logos/linkedin.svg'></Image></a>}
+      </div>
     </div>
   )
 }
